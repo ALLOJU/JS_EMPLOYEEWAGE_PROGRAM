@@ -1,14 +1,38 @@
-//UC1
-//assigning absent value is zero
-const IS_ABSENT=0
-//generating random value using math.random() function
-let empCheck=Math.floor(Math.random() *10) %2;
-//if employee check is zero then it gives absent
-if(empCheck==IS_ABSENT){
-    console.log("Employee is Absent");
+//Generating a random number
+let employeeChecker =  Math.floor((Math.random() * 10) % 2);
 
+//Assigning varaibles value as const as our intention is never changing there values
+const IS_ABSENT = 0;
+
+const IS_PRESENT = 1;
+
+//If-Else statement to check for presence and absence of employee
+if (employeeChecker == IS_ABSENT) {
+    console.log("Employee is present!");
+} else {
+    console.log("Employee is Absent!");
 }
-//otherwise it will give employee present
-else{
-    console.log("Employee is Present");
+
+//Generating a random number
+let empSalary = Math.floor((Math.random() * 10) % 3);
+
+//Assigning varaibles value as const as our intention is never changing there values
+const PART_TIME_HOURS = 4;
+
+const FULL_TIME_HOURS = 8;
+
+const WAGE_PER_HOUR = 20;
+
+//Switch case to calculate wage according to random values generated
+switch(empSalary) {
+    case 0:
+        console.log("Employee wage is 0");
+        break;
+
+    case 1:
+        console.log("Employee wage is $" + (PART_TIME_HOURS * WAGE_PER_HOUR));
+        break;
+
+    case 2:
+        console.log("Employee wage is $" + (FULL_TIME_HOURS * WAGE_PER_HOUR));
 }
