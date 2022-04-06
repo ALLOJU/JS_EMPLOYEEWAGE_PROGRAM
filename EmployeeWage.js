@@ -1,73 +1,55 @@
 /**
- * Purpose - Implementing Employee Wage Program In JavaScript
- * 
- * @author Mounika
- * 
+ * ****************************************************************************
+ * Purpose: The purpose of this program to calculate daily employee wage.
+
+ * ****************************************************************************
  */
 
-///UC-1
-
-//Generating a random number
-let employeeChecker =  Math.floor((Math.random() * 10) % 2);
-
-//Assigning varaibles value as const as our intention is never changing there values
-const IS_ABSENT = 0;
-
-const IS_PRESENT = 1;
-
-//If-Else statement to check for presence and absence of employee
-if (employeeChecker == IS_ABSENT) {
-    console.log("Employee is present!");
-} else {
-    console.log("Employee is Absent!");
-}
-
-//UC-2
-
-//Generating a random number
-let empSalary = Math.floor((Math.random() * 10) % 3);
-
-//Assigning varaibles value as const as our intention is never changing there values
-const PART_TIME_HOURS = 4;
-
-const FULL_TIME_HOURS = 8;
-
-const WAGE_PER_HOUR = 20;
-
-let empHours = 0;
-
-/**
- * Function of switch case to calculate wage according to random values generated
- * @param {*} empSalary  - input parameter for salary of the employee
- * @returns 
- */
-//UC3
-function getWorkingHours(empSalary){
-    switch(empSalary) {
-        case 0:
-            return 0;
-
-        case 1:
-            return PART_TIME_HOURS;
-    
-        case 2:
-            return FULL_TIME_HOURS;
-    }
-}
-
-const NUM_OF_WORKING_DAYS = 20;
-
-let totalEmpHours = 0;
-
-/**
- * For loop to run and get hours for 20 working days
- */
-//UC4
-for (let day = 0; day < NUM_OF_WORKING_DAYS; day++){
-    let empSalary = Math.floor((Math.random() * 10) % 3);
-    totalEmpHours += getWorkingHours(empSalary);
-}
-
-//Calculating employee wage
-let empWage = totalEmpHours * WAGE_PER_HOUR;
-console.log("Employee worked for " + totalEmpHours + " hours and wage is $" + empWage);
+ const IS_PART_TIME = 1;
+ const IS_FULL_TIME = 2;
+ const PART_TIME_HOURS = 4;
+ const FULL_TIME_HOURS = 8;
+ const WAGE_PER_HOUR = 20;
+ const NO_OF_WORKING_DAYS = 10;
+ const MAX_HRS_IN_MONTH = 100;
+ 
+ let totalEmpHrs = 0;
+ let totalWorkingDays = 0;
+ let empDailyWageArr = new Array();
+ 
+ /**
+  * Function for getting employee working hours 
+  * @param {*} empCheck : part time or full time 
+  * @returns : working hours
+  */
+ function getWorkingHours(empCheck) {
+     switch (empCheck) {
+         case IS_PART_TIME:
+             return PART_TIME_HOURS;
+         case IS_FULL_TIME:
+             return FULL_TIME_HOURS;
+         default:
+             return 0;
+     }
+ }
+ 
+ /**
+  * 
+  * @param {*} empHrs 
+  * @returns 
+  */
+ function calDailyWage(empHrs){
+     return empHrs * WAGE_PER_HOUR;
+ }
+ 
+ while(totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < NO_OF_WORKING_DAYS){
+     let empCheck = Math.floor(Math.random() * 10) % 3;
+     totalWorkingDays++;
+     let empHrs = getWorkingHours(empCheck);
+     totalEmpHrs = totalEmpHrs + empHrs;
+     empDailyWageArr.push(calDailyWage(empHrs))
+ }
+ 
+ let empWage = calDailyWage(totalEmpHrs);
+ 
+ console.log("Total Days : " + totalWorkingDays + ", Total Hrs : " + totalEmpHrs + ", Emp Wage : " + empWage);
